@@ -33,13 +33,16 @@ public class Main {
 		if(str[0].equals("newday"))
 			for(int i = 0; i < departures.size(); i++)
 				departures.get(i).NewDay();
+		else if(str.length == 4)
+			if(str[2].equals("serviced"))
+				departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).GetServiced();
 		else if(str.length == 4) {
 			if(str[2].equals("value"))
 				departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).setValue(Integer.parseInt(str[3]));
 			else if(str[2].equals("fault"))
 				departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).fault = (Integer.parseInt(str[3]));
-			else if(str[2].equals("serviced"))
-				departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).fault = (Integer.parseInt(str[3]));
+			//else if(str[2].equals("serviced"))
+				//departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).GetServiced();
 			//else if(str[2].equals("fault"))
 				//departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).fault = (Integer.parseInt(str[3]));
 			//else if(str[2].equals("fault"))
