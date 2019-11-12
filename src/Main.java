@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
 	
@@ -9,12 +11,26 @@ public class Main {
 		
 		departures = new ArrayList<Departure>();
 		
+	
 		init();
+		Regulator regulator = new Regulator();
 		
-		System.out.println(departures.get(0).toString());
+		Timer t = new Timer();
+		t.schedule(new TimerTask() {
+		    @Override
+		    public void run() {
+		    	for (Departure departure : departures) 
+		    	{ 
+		    		System.out.println(departure);
+		    		regulator.regulate(departure);
+		    	}
+		    	
+		    }
+		}, 0, 5000);
 	}
 	
 	public static void init() {
+	
 		departures.add(new Departure(0, "koho1"));
 		Device device = new Device(0, "egesterTemp", "tmp001", "temperature", "2019.11.05", 100, 0, 100);
 		departures.get(0).AddNewDevice(device);
@@ -35,12 +51,12 @@ public class Main {
 				departures.get(i).NewDay();
 		else if(str.length == 4)
 			if(str[2].equals("serviced"))
-				departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).GetServiced();
+				departures.get(Integer.parseInt(str[0])).getDevices().get(Integer.parseInt(str[1])).GetServiced();
 		else if(str.length == 4) {
 			if(str[2].equals("value"))
-				departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).setValue(Integer.parseInt(str[3]));
+				departures.get(Integer.parseInt(str[0])).getDevices().get(Integer.parseInt(str[1])).setValue(Integer.parseInt(str[3]));
 			else if(str[2].equals("fault"))
-				departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).fault = (Integer.parseInt(str[3]));
+				departures.get(Integer.parseInt(str[0])).getDevices().get(Integer.parseInt(str[1])).setFault(Integer.parseInt(str[3]));
 			//else if(str[2].equals("serviced"))
 				//departures.get(Integer.parseInt(str[0])).devices.get(Integer.parseInt(str[1])).GetServiced();
 			//else if(str[2].equals("fault"))

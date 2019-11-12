@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Departure {
 	
-	public int id;
-	public String name;
-	public List<Device> devices = new ArrayList<Device>();
+	private int id;
+	private String name;
+	private List<Device> devices = new ArrayList<Device>();
 	
 	public Departure() {
 		
@@ -31,6 +31,18 @@ public class Departure {
 		for(int i = 0; i < devices.size(); i++) {
 			result += "\n     " + devices.get(i).toString();
 		}
+		return result;
+	}
+	
+	public List<Device> getDevices() {
+		return devices;
+	}
+	
+	public Device getDevice(String name) {
+		Device result = devices.stream()
+				  .filter(device -> name.equals(device.getName()))
+				  .findAny()
+				  .orElse(devices.get(0));
 		return result;
 	}
 

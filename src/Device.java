@@ -1,19 +1,19 @@
 
 public class Device {
 	
-	public int id;
-	public String name;
-	public String type;
-	public String category;
-	public String startDate;
-	public int lifeTime;
-	public int TTL;
-	public int serviceTime = 0;
-	public int fault = 0;
-	public int faultTime = 0;
-	public int value = 0;
-	public int minValue = 0;
-	public int maxValue = 0;
+	private int id;
+	private String name;
+	private String type;
+	private String category;
+	private String startDate;
+	private int lifeTime;
+	private int TTL;
+	private int serviceTime = 0;
+	private int fault = 0;
+	private int faultTime = 0;
+	private double value = 0;
+	private double minValue = 0;
+	private double maxValue = 0;
 	
 	public Device() {
 		
@@ -63,7 +63,7 @@ public class Device {
 		serviceTime++;
 	}
 	
-	public void setValue(int val) {
+	public void setValue(double val) {
 		value = val;
 		if(value > maxValue || value < minValue)
 			fault = 2;
@@ -73,4 +73,15 @@ public class Device {
 		return id + ";" + name + ";" + type + ";" + category + ";" + startDate + ";" + lifeTime + ";" + TTL + ";" + serviceTime + ";" + fault + ";" + faultTime + ";" + value + ";" + minValue + ";" + maxValue;
 	}
 	
+	public void setFault(int value) {
+		fault = value;
+	}
+
+	public double getValue() {
+		return value;
+	}
+	
+	public String getName() {
+		return name;
+	}
 }
