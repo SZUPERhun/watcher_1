@@ -1,13 +1,9 @@
 
 public class Regulator {	
-	
-	public Regulator() {
-	
-	}
-	
-	public void regulate(Departure departure) {
-		double currentValue = departure.getDevice("tmp001").getValue();
-		departure.getDevice("tmp001").setValue(currentValue + 1);
+
+	public void regulate(Machine departure) {
+		double currentValue = departure.getMachinePart("tmp001").getValue();
+		departure.getMachinePart("tmp001").setValue(currentValue + 1);
 	}
 
 }
