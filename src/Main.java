@@ -23,4 +23,20 @@ public class Main {
 		sch = new Scheduler();
 		sch.start(machines);
 	}
+	
+	public static void processLine(String line) {
+		String[] str = line.split(";");
+		if(str[0].equals("newday"))
+			for(int i = 0; i < machines.size(); i++)
+				machines.get(i).nextDay();
+		else if(str.length == 4)
+			if(str[2].equals("serviced"))
+				machines.get(Integer.parseInt(str[0])).getMachineParts().get(Integer.parseInt(str[1])).getServiced();
+		else if(str.length == 4) {
+			if(str[2].equals("value"))
+				machines.get(Integer.parseInt(str[0])).getMachineParts().get(Integer.parseInt(str[1])).setValue(Integer.parseInt(str[3]));
+			else if(str[2].equals("fault"))
+				machines.get(Integer.parseInt(str[0])).getMachineParts().get(Integer.parseInt(str[1])).setFault(Integer.parseInt(str[3]));
+		}
+	}
 }
