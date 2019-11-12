@@ -12,9 +12,9 @@ public class Machine {
 		this.name = name;
 	}
 	
-	public MachinePart addNewMachinePart(MachinePart MachinePart) {
-		machineParts.add(MachinePart);
-		return MachinePart;
+	public MachinePart addNewMachinePart(MachinePart machinePart) {
+		machineParts.add(machinePart);
+		return machinePart;
 	}
 	
 	public void nextDay() {
@@ -49,7 +49,7 @@ public class Machine {
 	
 	public MachinePart getMachinePart(String name) {
 		MachinePart result = machineParts.stream()
-				  .filter(MachinePart -> name.equals(MachinePart.getName()))
+				  .filter(machinePart -> name.equals(machinePart.getName()))
 				  .findAny()
 				  .orElse(machineParts.get(0));
 		return result;
