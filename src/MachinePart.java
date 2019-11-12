@@ -15,26 +15,26 @@ public class MachinePart {
 	private double minValue = 0;
 	private double maxValue = 0;
 	
-	public MachinePart(int id1, String name1, String type1, String category1, String startDate1, int lifeTime1) {
-		id = id1;
-		name = name1;
-		type = type1;
-		category = category1;
-		startDate = startDate1;
-		lifeTime = lifeTime1;
-		TTL = lifeTime;
+	public MachinePart(int id, String name, String type, String category, String startDate, int lifeTime) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.category = category;
+		this.startDate = startDate;
+		this.lifeTime = lifeTime;
+		this.TTL = lifeTime;
 	}
 	
-	public MachinePart(int id1, String name1, String type1, String category1, String startDate1, int lifeTime1, int minValue1, int maxValue1) {
-		id = id1;
-		name = name1;
-		type = type1;
-		category = category1;
-		startDate = startDate1;
-		lifeTime = lifeTime1;
-		TTL = lifeTime;
-		minValue = minValue1;
-		maxValue = maxValue1;
+	public MachinePart(int id, String name, String type, String category, String startDate, int lifeTime, int minValue, int maxValue) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.category = category;
+		this.startDate = startDate;
+		this.lifeTime = lifeTime;
+		this.TTL = lifeTime;
+		this.minValue = minValue;
+		this.maxValue = maxValue;
 	}
 	
 	public void getServiced() {
