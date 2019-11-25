@@ -1,10 +1,13 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,11 @@ public class Main extends Application {
     static List<Machine> machines;
     static Scheduler sch;
 
+    private static void handle(WindowEvent t) {
+        Platform.exit();
+        System.exit(0);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -20,6 +28,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(Main::handle);
     }
 
     public static void main(String[] args) {

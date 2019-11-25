@@ -6,7 +6,6 @@ import java.util.TimerTask;
 
 public class Scheduler {
 	private Timer t;
-	
 	public Scheduler() {
 		t = new Timer();
 	}
@@ -16,8 +15,7 @@ public class Scheduler {
 		t.schedule(new TimerTask() {
 		    @Override
 		    public void run() {
-		    	for (Machine machine : machines) { 
-		    		System.out.println(machine);
+		    	for (Machine machine : machines) {
 		    		regulator.regulate(machine);
 		    	}
 		    	

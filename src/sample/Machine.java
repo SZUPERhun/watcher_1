@@ -44,6 +44,19 @@ public class Machine {
 		
 		return result;
 	}
+
+	public String toStringForJavaFX(int i) {
+		String result =
+				"MACHINE: \n" +
+						"id: " + id + "\n" +
+						"name: " + name + "\n" +
+						"============================\n" +
+						"MACHINEPARTS: \n";
+
+		result += machineParts.get(i);
+		result += "---------------------------- \n";
+		return result;
+	}
 	
 	public List<MachinePart> getMachineParts() {
 		return machineParts;

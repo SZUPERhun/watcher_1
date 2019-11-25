@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 import static sample.Main.machines;
 import static sample.Main.processLine;
@@ -12,23 +11,34 @@ import static sample.Main.processLine;
 public class Controller {
 
     @FXML
-    private Button btn;
+    private Button nextBtn;
     @FXML
-    private Label innerLabel;
+    private Button previousBtn;
     @FXML
-    private Label outerLabel;
-    @FXML
-    private Label gasLabel;
-    @FXML
-    private TextField textField;
+    private Button newdayBtn;
 
-    public void setGasLabel(Label gasLabel) {
-        machines.get(0).getMachinePart("tmp001").getValue();
+    @FXML
+    private Label MachineLabel;
+
+
+    @FXML
+    private void handleNewdayButtonAction(ActionEvent event){
+        processLine("newday");
+        MachineLabel.setText(machines.get(0).toStringForJavaFX(i));
     }
 
+    private int i = 0;
+
     @FXML
-    private void handleButtonAction(ActionEvent event){
-        processLine(textField.getText());
+    private void handleNextButtonAction(ActionEvent event){
+        if(i != 4)
+            i++;
+        MachineLabel.setText(machines.get(0).toStringForJavaFX(i));
     }
 
+    public void handlePreviousButtonAction(ActionEvent event) {
+        if(i != 0)
+            i--;
+        MachineLabel.setText(machines.get(0).toStringForJavaFX(i));
+    }
 }
