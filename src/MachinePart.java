@@ -99,6 +99,10 @@ public class MachinePart {
 	public String getType() {
 		return type;
 	}
+	
+	public String getCategory() {
+		return category;
+	}
 
 	public double getValue() {
 		return value;

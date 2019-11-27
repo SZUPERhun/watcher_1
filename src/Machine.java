@@ -32,7 +32,7 @@ public class Machine {
 		
 		int i = 0;
 		for (MachinePart machinePart : machineParts) {
-			if(machinePart.getType() == "tertmp" || machinePart.getType() == "szelltmp") {
+			if(machinePart.getCategory() == "temperature") {
 				result += machinePart;
 				if (++i < machineParts.size()) {
 					result += "---------------------------- \n";
