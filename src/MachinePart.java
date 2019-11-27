@@ -11,6 +11,7 @@ public class MachinePart {
 	private int serviceTime = 0;
 	private int fault = 0;
 	private int faultTime = 0;
+	private int initFault = 0;
 	private double value = 0;
 	private double minValue = 0;
 	private double maxValue = 0;
@@ -61,22 +62,27 @@ public class MachinePart {
 	
 	public void setValue(double val) {
 		value = val;
-		if(value > maxValue || value < minValue)
+		if (initFault == 0) {
+			if (value <= maxValue && value >= minValue) {
+				initFault = 1;
+			}
+		}
+		if(0 < initFault && fault != 1 && (value > maxValue || value < minValue))
 			fault = 2;
 	}
 	
 	public String toString() {
 		return 
-			"id: " + id + "\n" +
-			"name: " + name + "\n" +
+			/*"id: " + id + "\n" +
+			*/"name: " + name + "\n" +/*
 			"type: " + type + "\n" +
 			"category: " + category + "\n" +
 			"startDate: " + startDate + "\n" +
 			"lifeTime: " + lifeTime + "\n" +
 			"TTL: " + TTL + "\n" +
 			"serviceTime: " + serviceTime + "\n" +
-			"fault: " + fault + "\n" +
-			"faultTime: " + faultTime + "\n" +
+			*/"fault: " + fault + "\n" +
+			//"faultTime: " + faultTime + "\n" +
 			"value: " + value + "\n" +
 			"minValue: " + minValue + "\n" +
 			"maxValue: " + maxValue + "\n";
@@ -85,9 +91,25 @@ public class MachinePart {
 	public void setFault(int value) {
 		fault = value;
 	}
+	
+	public int getFault() {
+		return fault;
+	}
+	
+	public String getType() {
+		return type;
+	}
 
 	public double getValue() {
 		return value;
+	}
+	
+	public double getMinValue() {
+		return minValue;
+	}
+	
+	public double getMaxValue() {
+		return maxValue;
 	}
 	
 	public String getName() {

@@ -11,12 +11,13 @@ public class Scheduler {
 
 	public void start(List<Machine> machines) {
 		Regulator regulator = new Regulator();
+		String toRegulate[] = {"tertmp", "szelltmp"};
 		t.schedule(new TimerTask() {
 		    @Override
 		    public void run() {
 		    	for (Machine machine : machines) { 
 		    		System.out.println(machine);
-		    		regulator.regulate(machine);
+		    		regulator.regulate(machine, toRegulate);
 		    	}
 		    	
 		    }
