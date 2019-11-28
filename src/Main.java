@@ -14,8 +14,8 @@ public class Main {
 	
 	public static void init() {
 		machines.add(new Machine(0, "koho1"));
-		machines.get(0).addNewMachinePart(new MachinePart(0, "egesterTemp", "tertmp", "temperature", "2019.11.05", 100, 0, 100));
-		machines.get(0).addNewMachinePart(new MachinePart(1, "szellozoTemp", "szelltmp", "temperature", "2019.11.05", 100, 0, 100));
+		machines.get(0).addNewMachinePart(new MachinePart(0, "egesterTemp", "tertmp", "temperature", "2019.11.05", 100, 80, 100));
+		machines.get(0).addNewMachinePart(new MachinePart(1, "szellozoTemp", "szelltmp", "temperature", "2019.11.05", 100, 40, 50));
 		machines.get(0).addNewMachinePart(new MachinePart(2, "langor", "lang", "langor", "2019.11.05", 100, 0, 1));
 		machines.get(0).addNewMachinePart(new MachinePart(3, "gaznyomas", "press", "pressure", "2019.11.05", 100, 0, 100));
 		machines.get(0).addNewMachinePart(new MachinePart(4, "gazcsap", "csap", "zar", "2019.11.05", 100, 0, 100));

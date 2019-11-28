@@ -32,11 +32,12 @@ public class Machine {
 		
 		int i = 0;
 		for (MachinePart machinePart : machineParts) {
-			result += machinePart;
-			if (++i < machineParts.size()) {
-				result += "---------------------------- \n";
+			if(machinePart.getCategory() == "temperature") {
+				result += machinePart;
+				if (++i < machineParts.size()) {
+					result += "---------------------------- \n";
+				}
 			}
-		
     	}
 		result += "\n";
 		
@@ -49,7 +50,7 @@ public class Machine {
 	
 	public MachinePart getMachinePart(String name) {
 		MachinePart result = machineParts.stream()
-				  .filter(machinePart -> name.equals(machinePart.getName()))
+				  .filter(machinePart -> name.equals(machinePart.getType()))
 				  .findAny()
 				  .orElse(machineParts.get(0));
 		return result;
