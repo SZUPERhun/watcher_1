@@ -1,3 +1,4 @@
+package watcher;
 
 public class MachinePart {
 	

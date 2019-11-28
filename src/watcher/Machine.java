@@ -1,3 +1,5 @@
+package watcher;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,8 @@ public class Machine {
 		
 		return result;
 	}
+
+
 	
 	public List<MachinePart> getMachineParts() {
 		return machineParts;

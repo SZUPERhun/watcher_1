@@ -1,27 +1,53 @@
+package watcher;
+
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class Main  extends  Application{
 	
 	static List<Machine> machines;
 	static Scheduler sch;
+
+	private static void handle(WindowEvent t) {
+		Platform.exit();
+		System.exit(0);
+	}
+
+	public void start(Stage primaryStage) throws Exception{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
+		Parent root = loader.load();
+		primaryStage.setTitle("Watcher");
+		primaryStage.setScene(new Scene(root, 600, 400));
+		primaryStage.setResizable(false);
+		primaryStage.show();
+		Controller controller = loader.<Controller>getController();
+		controller.passMachines(machines);
+
+		primaryStage.setOnCloseRequest(Main::handle);
+	}
 	
 	public static void main(String args[]) {
 		machines = new ArrayList<Machine>();
-		
-		init();
-	}
-	
-	public static void init() {
+
 		machines.add(new Machine(0, "koho1"));
 		machines.get(0).addNewMachinePart(new MachinePart(0, "egesterTemp", "tertmp", "temperature", "2019.11.05", 100, 80, 100));
 		machines.get(0).addNewMachinePart(new MachinePart(1, "szellozoTemp", "szelltmp", "temperature", "2019.11.05", 100, 40, 50));
 		machines.get(0).addNewMachinePart(new MachinePart(2, "langor", "lang", "langor", "2019.11.05", 100, 0, 1));
 		machines.get(0).addNewMachinePart(new MachinePart(3, "gaznyomas", "press", "pressure", "2019.11.05", 100, 0, 100));
 		machines.get(0).addNewMachinePart(new MachinePart(4, "gazcsap", "csap", "zar", "2019.11.05", 100, 0, 100));
-		
+
 		sch = new Scheduler();
 		sch.start(machines);
+
+		launch(args);
 	}
 	
 	public static void processLine(String line) {
