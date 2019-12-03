@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main  extends  Application{
-	
+
 	static List<Machine> machines;
 	static Scheduler sch;
 
@@ -24,16 +24,42 @@ public class Main  extends  Application{
 	public void start(Stage primaryStage) throws Exception{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
 		Parent root = loader.load();
-		primaryStage.setTitle("Watcher");
+
+		Controller controller = loader.<Controller>getController();
+
+		Thread thread = new Thread(new Runnable() {
+			@Override
+            public void run() {
+                Runnable updater = new Runnable() {
+
+                    @Override
+                    public void run() {
+                    	controller.updateData(machines);
+                    }
+                };
+
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    Platform.runLater(updater);
+                }
+            }
+		});
+        // don't let thread prevent JVM shutdown
+        thread.setDaemon(true);
+        thread.start();
+
+        primaryStage.setTitle("Watcher");
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		Controller controller = loader.<Controller>getController();
-		controller.passMachines(machines);
-
 		primaryStage.setOnCloseRequest(Main::handle);
 	}
-	
+
 	public static void main(String args[]) {
 		machines = new ArrayList<Machine>();
 
@@ -49,7 +75,7 @@ public class Main  extends  Application{
 
 		launch(args);
 	}
-	
+
 	public static void processLine(String line) {
 		String[] str = line.split(";");
 		if(str[0].equals("newday"))
