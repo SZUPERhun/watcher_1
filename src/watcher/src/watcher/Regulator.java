@@ -22,7 +22,7 @@ public class Regulator {
 				return val;
 			}
 
-			val += random(min, max) / 20;
+			val += random(min, max) / 10;
 
 			return val;
 		}
@@ -32,7 +32,7 @@ public class Regulator {
 				return 0;
 			}
 
-			val -= random(min, max) / 40;
+			val -= random(min, max) / 15;
 			if (val < 0) {
 				return 0;
 			}

@@ -24,6 +24,9 @@ public class Controller {
     private Button reset2Btn;
 
     @FXML
+    private Button nextDayBtn;
+
+    @FXML
     private Label tertemp1Label;
 
     @FXML
@@ -78,8 +81,9 @@ public class Controller {
     }
 
     @FXML
-    private void handleNewdayButtonAction(ActionEvent event){
-        //something
+    private void handleNewDayAction(ActionEvent event){
+    	machines.get(0).nextDay();
+    	machines.get(1).nextDay();
     }
 
     @FXML
@@ -91,7 +95,7 @@ public class Controller {
     @FXML
     private void handleError2Action(ActionEvent event){
     	machines.get(1).getMachinePart("szelltmp").setFault(1);
-    	machines.get(0).getMachinePart("tertmp").setFault(1);
+    	machines.get(1).getMachinePart("tertmp").setFault(1);
     }
 
     @FXML

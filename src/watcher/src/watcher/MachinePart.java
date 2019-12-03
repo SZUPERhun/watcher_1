@@ -54,7 +54,9 @@ public class MachinePart {
 	}
 
 	public void incAge() {
-		TTL--;
+		if(TTL > 0)
+			TTL--;
+		
 	}
 
 	public void incServiceTime() {
@@ -70,6 +72,8 @@ public class MachinePart {
 		}
 		if (0 < initFault && fault != 1 && (value > maxValue || value < minValue))
 			fault = 2;
+		if(TTL <= 0)
+			fault = 1;
 	}
 
 	public String toString() {
@@ -79,8 +83,8 @@ public class MachinePart {
 			"type: " + type + "\n" +
 			"category: " + category + "\n" +
 			"startDate: " + startDate + "\n" +
-			"lifeTime: " + lifeTime + "\n" +
-			"TTL: " + TTL + "\n" +
+			"lifeTime: " + lifeTime + "\n" +*/
+			"TTL: " + TTL + "\n" +/*
 			"serviceTime: " + serviceTime + "\n" +
 			*/"fault: " + fault + "\n" +
 			//"faultTime: " + faultTime + "\n" +
